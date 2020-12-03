@@ -16,7 +16,10 @@ namespace BusinessLayer
         {
             this.menuItemRepository = new MenuItemRepository();
         }
-
+        public List<MenuItem> GetAllMenuItems()
+        {
+            return menuItemRepository.GetAllMenuItems();
+        }
         public List<MenuItem> getMenuItemsByPrice(decimal min, decimal max)
         {
             List<MenuItem> list = new List<MenuItem>();
@@ -29,7 +32,7 @@ namespace BusinessLayer
                     list.Add(m);
                 }
             }
-            return list;
+            return allItems.Where(x => x.Price>min && x.Price<max).ToList();
                 
          }
         public bool insertMenuItem(MenuItem x)
